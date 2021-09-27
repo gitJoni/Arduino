@@ -71,11 +71,12 @@ void loop() {
   Serial.print(volume);
   Serial.print(" : ");
   Serial.println(data);
-  delay(40);
+  delay(4000);
 }
 
 int MIC3_getSound(void) {
   digitalWrite(SS, LOW);  //activate chip select
+  Serial.println(SPI.transfer(0));
   int sound = SPI.transfer(0) | (SPI.transfer(0) << 8); //reconstruct 12-bit data
   digitalWrite(SS, HIGH); //deactivate chip select
   return sound;
