@@ -51,13 +51,13 @@ String output;
 char testi[40];
 
 void loop() {
-  for (int i = 0; i < 50000; i++) {  // Creating average of 100 samples
+  for (int i = 0; i < 50000; i++) {  // Creating average of 50000 samples
     volume += MIC3_getSound();
     data += ALS_getData();
   }
   volume = volume / 50000;
   data = data / 50000;
-  doc["volume"] = volume;
+  doc["volume"] = volume; // Creating Json samples to send to cloud via MQTT
   doc["als"] = data;
   if (WiFi.status() != WL_CONNECTED) {
     connectToWifi();
